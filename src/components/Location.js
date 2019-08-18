@@ -1,15 +1,37 @@
-import React from 'react';
+import React, {useState, useEffect} from 'react';
+import axios from 'axios';
 
-const Location = () => {
+
+const Locations = (props) => {
+
+const [locations, setLocations] = useState();
+
+  const id = props.match.params.id;
+
+  useEffect(() => {
+      const id = props.match.params.id
+
+      axios
+        .get(`https://rickandmortyapi.com/api/location/`)
+        .then(res => {
 
 
-    return(
-        <div>
+        }
+        .catch( err => {
+          console.log("Error message from Locations", err);
+        })
 
-        </div>
 
-    )
 
-}
+  }, [])
 
-export default Location
+      return(
+          <div>
+
+          </div>
+
+      )
+
+  }
+
+export default Locations
