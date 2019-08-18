@@ -1,42 +1,31 @@
-import React, {useState, useEffect} from 'react';
-import {Card} from "semantic-ui-react";
+import React, { useEffect, useState } from 'react';
 import axios from 'axios';
-import EpisodeCard from "./EpisodeCard";
+import EpisodeCard from './EpisodeCard';
 
+export default function EpisodeList() {
+  // TODO: Add useState to track data from useEffect
+  const [episodeList, setEpisodeList] = useState([]);
 
-const EpisodesList = () => {
+  useEffect(() => {
+    axios.get("https://rickandmortyapi.com/api/episode/")
+    .then(res => {
+      console.log('episodes: ', res.data.results);
+      setEpisodeList(res.data.results);
+    })
+    .catch(err => {
+      console.log(err);
+    })
+    // TODO: Add AJAX/API Request here - must run in `useEffect`
+    //  Important: verify the 2nd `useEffect` parameter: the dependancies array!
+  }, []);
 
-  const [episodes, setEpisodes] = useState([]);
-
-    useEffect(() => {
-
-        axios
-          .get(`https://rickandmortyapi.com/api/episode/`)
-          .then(res => {
-            setEpisodes(res.data.results)
-            console.log(res.data.results)
-
-
-          })
-          .catch( err => {
-            console.log("Error message from Episodes", err);
-          })
-
-    }, []);
-
-    if(!episodes) {return <div>Loading Episodes...</div>}
-
-      return(
-          <section className="episodes-list grid-view" >
-            {episodes.map(epi => {
-              return <EpisodeCard key={epi.id} {...epi} />
-            })}
-
-          </section>
-
-      )
-
-      };
-
-
-export default EpisodesList
+  return(
+    <section className='episode-list grid-view'>
+      {
+        episodeList.map((episode, index) => {
+          return <EpisodeCard episode={episode} key={index}/>
+        })
+      }
+    </section>
+  );
+}

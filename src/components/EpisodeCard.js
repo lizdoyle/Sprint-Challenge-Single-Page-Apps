@@ -1,19 +1,22 @@
-import React from 'react';
-import {Card, Label, Icon} from "semantic-ui-react";
+import React from 'react'
+import styled from 'styled-components';
 
-const  EpisodeCard = ({name, air_date: airDate, episode, characters}) => {
+const EpiCard = styled.div`
+  display: flex;
+  flex-direction: column;
+  width: 300px;
+  border: 2px solid black;
+  border-radius: 5px;
+  margin: 10px auto;
+  padding: 10px;
+`;
 
-    return(
-      <Card
-        header={name}
-        description={`${airDate} - ${episode}`}
-        extra={
-          <Label className="bottom right attached">
-            <Icon name="user" /> {characters && characters.length}
-            </Label>
-          }
-      />
-    );
+export default function EpisodeCard ( {episode} ) {
+  return (
+    <EpiCard className="episode-card">
+      <h3 style={{textAlign: "center"}}>{episode.name}</h3>
+      <p style={{margin: "0"}}>Episode {episode.episode}</p>
+      <p style={{margin: "0"}}>Air Date: {episode.air_date}</p>
+    </EpiCard>
+  );
 }
-
- export default EpisodeCard
