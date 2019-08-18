@@ -4,19 +4,18 @@ import axios from 'axios';
 
 const Locations = (props) => {
 
-const [locations, setLocations] = useState();
+const [location, setLocation] = useState();
 
-  const id = props.match.params.id;
-
+console.log("locProps:", props)
   useEffect(() => {
-      const id = props.match.params.id
+      const loc = props.match.params.url
 
       axios
-        .get(`https://rickandmortyapi.com/api/location/`)
+        .get(`https://rickandmortyapi.com/api/location/${loc}`)
         .then(res => {
+          setLocation(res.data)
 
-
-        }
+        })
         .catch( err => {
           console.log("Error message from Locations", err);
         })
@@ -25,12 +24,14 @@ const [locations, setLocations] = useState();
 
   }, [])
 
-      return(
-          <div>
+  if(!location) {return <div>Loading Locations...</div>}
 
-          </div>
+    return(
+        <div>
 
-      )
+        </div>
+
+    )
 
   }
 

@@ -2,38 +2,40 @@ import React, {useState, useEffect} from 'react';
 
 import axios from 'axios';
 
-const Episodes = () => {
+const Episodes = (props) => {
 
-  const [episodes, setEpisodes] = useState();
-
-    const id = props.match.params.id;
+  const [episode, setEpisode] = useState([]);
+  console.log("epiProps:", props)
 
     useEffect(() => {
-        const id = props.match.params.id
+        const epi = props.match.params.url;
 
         axios
-          .get(`https://rickandmortyapi.com/api/episode/`)
+          .get(`https://rickandmortyapi.com/api/episode/${epi}`)
           .then(res => {
+            setEpisode(res.data)
+            console.log(res.data)
 
 
-          }
+          })
           .catch( err => {
             console.log("Error message from Episodes", err);
           })
 
 
 
-    }, [])
+    }, []);
 
+    if(!episode) {return <div>Loading Episodes...</div>}
 
-          return(
-              <div>
+      return(
+          <div>
 
-              </div>
+          </div>
 
-          )
+      )
 
-      }
+      };
 
 
 export default Episodes
