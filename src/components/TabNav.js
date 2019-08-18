@@ -24,9 +24,9 @@ const panes = [
 
   {menuItem: <Menu.Item key='home' as={Nav} to={`/`} content={welcomeLabel}/>},
 
-  {menuItem: <Menu.Item key='characters' as={Nav} to={`/characters`} content={charactersLabel}/>},
+  {menuItem: <Menu.Item key='characters' as={Nav} to={`/character`} content={charactersLabel}/>},
 
-  {menuItem: <Menu.Item key='locations' as={Nav} to={`/locations`} content={locationsLabel}/>},
+  {menuItem: <Menu.Item key='locations' as={Nav} to={`/location`} content={locationsLabel}/>},
 
   {menuItem: <Menu.Item key='episodes' as={Nav} to={`/episodes`} content={epiodesLabel}/>},
 
