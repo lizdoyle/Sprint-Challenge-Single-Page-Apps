@@ -11,7 +11,6 @@ export default function AppRouter() {
 
         <div className=" ui bottom attached segment active tab">
         <Switch>
-
            <Route  path="/" exact component={WelcomePage} />
            <Route  path="/character" component={CharacterList} />
            <Route  path="/location" component={LocationsList} />
