@@ -1,5 +1,17 @@
 import React from "react";
+import { Card, Label } from "semantic-ui-react";
 
 export default function LocationCard({ name, type, dimension, residents }) {
-  return <span>todo: location</span>;
+  // image={image}
+  return (
+    <Card
+      header={name}
+      description={`${type} - ${dimension}`}
+      extra={
+        <Label className="bottom right attached">
+          {residents && residents.length} residents
+        </Label>
+      }
+    />
+  );
 }
